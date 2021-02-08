@@ -122,6 +122,10 @@ namespace HtmlTags
         }
 
         public string TagName() => _tag;
+        
+        public IDictionary<string, object> GetAttributes() => 
+            _htmlAttributes.Inner
+                .ToDictionary(x => x.Key, x => x.Value.Value);
 
         public HtmlTag TagName(string tag)
         {

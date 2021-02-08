@@ -413,6 +413,20 @@ namespace HtmlTags.Testing
             var tag = new HtmlTag("option").Attr("value", string.Empty);
             tag.ToString().ShouldBe("<option value=\"\"></option>");
         }
+        
+        [Fact]
+        public void render_all_attributes() {
+            var tag = new HtmlTag("table")
+                .Attr("cellPadding", 2)
+                .Attr("cellPadding", 5)
+                .Attr("cellMargin", 10);
+            
+            var attrs = tag.GetAttributes();
+            
+            attrs.Count.ShouldBe(2);
+            attrs["cellPadding"].ShouldBe("5");
+            attrs["cellMargin"].ShouldBe("10");
+        }
 
         //
         // CSS classes
